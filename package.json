@@ -17,5 +17,9 @@
   "bugs": {
     "url": "https://github.com/aditipachghare/playwright-cucumber-framework/issues"
   },
-  "homepage": "https://github.com/aditipachghare/playwright-cucumber-framework#readme"
+  "homepage": "https://github.com/aditipachghare/playwright-cucumber-framework#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.61.1",
+    "@types/node": "^26.0.1"
+  }
 }
