@@ -31,4 +31,15 @@ test.describe('Login functionality', () => {
 
     });
 
+    test('should add a product to cart after login', async ({page})=>{
+        const loginPage = new LoginPage(page);
+        const inventoryPage = new InventoryPage(page);
+
+        await loginPage.goto();
+        await loginPage.login('standard_user', 'secret_sauce');
+        await inventoryPage.addToCart('sauce-labs-backpack');
+        const count = await inventoryPage.getCartCount();
+        expect(count).toBe('1');
+    })
+
 });
