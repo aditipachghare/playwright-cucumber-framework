@@ -14,7 +14,7 @@ class LoginPage {
   }
 
   async goto() {
-    await this.page.goto("https://www.saucedemo.com");
+    await this.page.goto('/'); // Playwright prepends baseURL automatically
   }
 
   async login(username, password) {
