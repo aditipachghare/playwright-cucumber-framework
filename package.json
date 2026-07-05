@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/aditipachghare/playwright-cucumber-framework#readme",
   "devDependencies": {
+    "@cucumber/cucumber": "^13.0.0",
     "@playwright/test": "^1.61.1",
     "@types/node": "^26.0.1"
   }
