@@ -1,16 +1,11 @@
-const { defineConfig, devices } = require('@playwright/test');
-const config = require('./src/support/config');
+require('dotenv').config();
 
-module.exports = defineConfig({
-  testDir: './tests',
-  use: {
-    baseURL: config.baseURL,
-    headless: config.headless,
-    actionTimeout: config.actionTimeout,
-    navigationTimeout: config.navigationTimeout,
-    screenshot: 'only-on-failure',
-    video: 'retain-on-failure',
-    trace: 'on-first-retry',
-  },
-  // rest of config...
-});
+const config = {
+  baseURL: process.env.BASE_URL || 'https://www.saucedemo.com',
+  browser: process.env.BROWSER || 'chromium',
+  headless: process.env.HEADLESS === 'true',
+  navigationTimeout: parseInt(process.env.NAVIGATION_TIMEOUT) || 60000,
+  actionTimeout: parseInt(process.env.ACTION_TIMEOUT) || 60000
+};
+
+module.exports = config;

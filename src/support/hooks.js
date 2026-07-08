@@ -1,35 +1,37 @@
-const { Before, After, BeforeAll, AfterAll } = require('@cucumber/cucumber');
-const { chromium } = require('@playwright/test');
+const { Before, After, BeforeAll, AfterAll, setDefaultTimeout } = require('@cucumber/cucumber');
+const { chromium, firefox, webkit } = require('@playwright/test');
+const config = require('./config');
+
+setDefaultTimeout(60 * 1000);
+
+const browsers = { chromium, firefox, webkit };
 
 BeforeAll(async function () {
-  // runs once before all scenarios
-  // nothing needed here for now
 });
 
-Before(async function () {
-  // runs before EACH scenario
-  // launch fresh browser, context and page
-  this.browser = await chromium.launch({ headless: false });
+Before(async function (scenario) {
+  const browserType = browsers[config.browser];
+  this.browser = await browserType.launch({ 
+    headless: config.headless 
+  });
   this.context = await this.browser.newContext({
-    baseURL: 'https://www.saucedemo.com'
+    baseURL: config.baseURL
   });
   this.page = await this.context.newPage();
+  this.page.setDefaultNavigationTimeout(config.navigationTimeout);
+  this.page.setDefaultTimeout(config.actionTimeout);
+  console.log(`\n Starting scenario: ${scenario.pickle.name}`);
 });
 
 After(async function (scenario) {
-  // runs after EACH scenario
-  // take screenshot if scenario failed
   if (scenario.result?.status === 'FAILED') {
-    const screenshot = await this.page.screenshot();
+    const screenshot = await this.page.screenshot({ fullPage: true });
     this.attach(screenshot, 'image/png');
   }
-  // cleanup
   await this.page.close();
   await this.context.close();
   await this.browser.close();
 });
 
 AfterAll(async function () {
-  // runs once after all scenarios
-  // nothing needed here for now
 });

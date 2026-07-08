@@ -148,3 +148,12 @@ vite.config.ts.timestamp-*
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+
+#env
+.env
+.env.*
+allure-results/
+allure-report/
+cucumber-report/
+test-results/
+playwright-report/

@@ -12,12 +12,14 @@ module.exports = {
     // reporters
     format: [
       'progress-bar',
-      'html:cucumber-report/index.html'
+      'html:cucumber-report/index.html',
+      'allure-cucumberjs/reporter'
     ],
     
     // generate snippets in async-await style
     formatOptions: {
-      snippetInterface: 'async-await'
+      snippetInterface: 'async-await',
+      resultsDir: 'allure-results'
     },
     
     // suppress publish prompt

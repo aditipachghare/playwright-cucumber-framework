@@ -1,0 +1,12 @@
+{
+  "products": [
+    "sauce-labs-backpack",
+    "sauce-labs-bike-light",
+    "sauce-labs-bolt-t-shirt"
+  ],
+  "expectedMessages": {
+    "productsPageTitle": "Products",
+    "invalidLoginError": "Epic sadface: Username and password do not match any user in this service",
+    "lockedUserError": "Epic sadface: Sorry, this user has been locked out"
+  }
+}

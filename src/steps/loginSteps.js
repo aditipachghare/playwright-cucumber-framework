@@ -2,6 +2,8 @@ const { Given, When, Then } = require('@cucumber/cucumber');
 const { expect } = require('@playwright/test');
 const LoginPage = require('../pages/LoginPage');
 const InventoryPage = require('../pages/InventoryPage');
+const users = require('../../test-data/users.json');
+const products = require('../../test-data/products.json');
 
 Given('I am on the login page', async function () {
   this.loginPage = new LoginPage(this.page);
@@ -15,12 +17,12 @@ When('I login with username {string} and password {string}', async function (use
 Then('I should see the products page with title {string}', async function (expectedTitle) {
   this.inventoryPage = new InventoryPage(this.page);
   const title = await this.inventoryPage.getTitle();
-  expect(title).toBe(expectedTitle);
+  expect(title).toBe(products.expectedMessages.productsPageTitle);
 });
 
 Then('I should see an error message {string}', async function (expectedError) {
   const errorMsg = await this.loginPage.getErrorMessage();
-  expect(errorMsg).toContain(expectedError);
+  expect(errorMsg).toContain(products.expectedMessages.invalidLoginError);
 });
 
 When('I add {string} to cart', async function (productName) {

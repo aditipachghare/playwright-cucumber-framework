@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "npx playwright test",
-    "test:bdd": "npx cucumber-js"
+    "test:bdd": "npx cucumber-js",
+    "allure:generate": "allure generate allure-results --clean -o allure-report",
+    "allure:open": "allure open allure-report",
+    "allure:report": "npm run allure:generate && npm run allure:open"
   },
   "repository": {
     "type": "git",
@@ -21,6 +24,8 @@
   "devDependencies": {
     "@cucumber/cucumber": "^13.0.0",
     "@playwright/test": "^1.61.1",
-    "@types/node": "^26.0.1"
+    "@types/node": "^26.0.1",
+    "allure-cucumberjs": "^3.10.2",
+    "dotenv": "^16.6.1"
   }
 }
